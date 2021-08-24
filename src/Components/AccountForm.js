@@ -29,8 +29,9 @@ const AccountForm = ({setToken, setMessage}) => {
             if (loginResp.data) {
                 console.log('loginResp', loginResp)
                 const userResp = await callApi({url: '/users/me', token: loginResp.data.token});
+                console.log('userResp', userResp)
                 setToken(loginResp.data.token);
-                setMessage(loginResp.data.message)
+                setMessage(userResp.data.username)
                 if (loginResp.data.token) {
                     history.push('/'); 
                 }

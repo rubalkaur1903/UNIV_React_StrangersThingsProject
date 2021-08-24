@@ -16,7 +16,7 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
     const [message, setMessage] =useState('');
-    const [postId, setPostId] = useState(null);
+    // const [postId, setPostId] = useState(null);
     
 
     useEffect(() => {
@@ -43,11 +43,12 @@ const App = () => {
                 }
             </div>
             <Route exact path="/">
-                <Home message={message} token={token}/>
+                <Home username={message} token={token}/>
             </Route>
             <Route exact path="/posts">
                 <AddPost token={token} setPosts={setPosts}/>
                 <Posts posts={posts} token={token}/>
+                
             </Route>
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
