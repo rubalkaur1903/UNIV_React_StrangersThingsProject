@@ -1,4 +1,5 @@
 import React from 'react';
+import PostSingle from './PostSingle';
 
 const Posts = (props) => {
     const { posts, token } = props;
@@ -6,17 +7,11 @@ const Posts = (props) => {
     return <div>
         <h1>Posts</h1>
         {
-            posts.map(post => <div id="posts" key={post._id}>
-                <h3>Username: {post.author.username}</h3>
-                <div>Title: {post.title}</div>
-                <div>Price: {post.price}</div>
-                <div>Description: {post.description}</div>
-            </div>
+            posts.map(post => <PostSingle id="posts" key={post._id} post={post}>
+                
+            </PostSingle>
             )
         }
-        {/* {
-            token. ? <button type="button" className="edit-btn">Edit</button> : ''
-        } */}
     </div>
 }
 

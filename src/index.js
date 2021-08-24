@@ -16,7 +16,6 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
     const [message, setMessage] =useState('');
-    console.log('message', message)
     const [postId, setPostId] = useState(null);
     
 
