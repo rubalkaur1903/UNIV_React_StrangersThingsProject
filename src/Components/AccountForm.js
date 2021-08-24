@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 
+import { callApi } from '../util';
+
 const { REACT_APP_BASE_URL } = process.env;
 
-const AccountForm = ({setToken, setMessage}) => {
+const AccountForm = ({setToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const params = useParams();
@@ -11,39 +13,34 @@ const AccountForm = ({setToken, setMessage}) => {
     // const [secondPassword, setSecondPassword] = useState('');
 
     return <>
-        <form onSubmit={ async (event) => {
+        <form className="inputs" onSubmit={ async (event) => {
             event.preventDefault();
-            const resp = await fetch(`${REACT_APP_BASE_URL}/users/${params.method}`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
+
+            const loginResp = await callApi({
+                url: `/users/${params.method}`,
+                method: 'POST',
+                body: {
                     user: {
                     username,
                     password
                     }
-                })
+                }
             });
-            const respObj = await resp.json();
-            console.log(respObj)
-            // setToken(respObj.data.token);
-            if (respObj.data) {
-                setToken(respObj.data.token);
-                setMessage(respObj.data.message)
-                if (respObj.data.token) {
+            if (loginResp.data) {
+                console.log('loginResp', loginResp)
+                const userResp = await callApi({url: '/users/me', token: loginResp.data.token});
+                setToken(loginResp.data.token);
+                if (loginResp.data.token) {
                     history.push('/'); 
                 }
             }
         }}>
-            <input type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
-            <hr></hr>
-            <input type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            <hr></hr>
+            <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
+            <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
             {/* {
-                params.method === 'signup' ? <input type="password" placeholder="Enter Password Again" value={secondPassword} onChange={(event) => setSecondPassword(event.target.value)}></input> : password.value === secondPassword.value ? 
+                params.method === 'register' ? <input type="password" placeholder="Enter Password Again" value={secondPassword} onChange={(event) => setSecondPassword(event.target.value)}></input> : password.value === secondPassword.value ? 
             } */}
-            <button type="submit">Submit</button>
+            <button className="btn-input" type="submit">Submit</button>
         </form>
     </>
 }

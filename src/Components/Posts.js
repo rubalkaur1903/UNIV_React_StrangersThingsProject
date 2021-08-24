@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Posts = (props) => {
-    const { posts, setPostId } = props;
+    const { posts, token } = props;
+    console.log(posts)
     return <div>
         <h1>Posts</h1>
         {
@@ -10,10 +11,12 @@ const Posts = (props) => {
                 <div>Title: {post.title}</div>
                 <div>Price: {post.price}</div>
                 <div>Description: {post.description}</div>
-                <button type="button" className="edit-btn" onClick={() => setPostId(post._id)}>Edit</button>
             </div>
             )
         }
+        {/* {
+            token. ? <button type="button" className="edit-btn">Edit</button> : ''
+        } */}
     </div>
 }
 

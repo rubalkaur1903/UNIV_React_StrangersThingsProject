@@ -5,13 +5,16 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Posts from './Components/Posts';
 import AccountForm from './Components/AccountForm';
 import Home from './Components/Home';
+import Logout from './Components/Logout';
+import AddPost from './Components/AddPosts';
+
+import '../src/style.css'
 
 const { REACT_APP_BASE_URL } = process.env;
 
 const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
-    const [message, setMessage] = useState('');
     const [postId, setPostId] = useState(null);
     
 
@@ -32,21 +35,23 @@ const App = () => {
     <BrowserRouter>
         <div id="container">
             <div id="navbar">
-                <Link to="/">Home</Link> |
-                <Link to="/posts">Posts</Link> | 
-                <Link to="/account/:method">Login/Register!</Link>
+                <Link className="main-link" to="/">Home</Link>
+                <Link className="main-link" to="/posts">Posts</Link>
+                {
+                    token ? <Logout /> : <Link className="main-link" to="/account/:method">Login/Register</Link>
+                }
             </div>
             <Route exact path="/">
-                <Home message={message}/>
-                {/* username={guest.username} */}
+                <Home />
             </Route>
             <Route exact path="/posts">
-                <Posts posts={posts} setPostId={setPostId}/>
+                <AddPost token={token} setPosts={setPosts}/>
+                <Posts posts={posts} token={token}/>
             </Route>
             <Route exact path="/account/:method">
-                <Link to="/account/login">Login</Link> |
-                <Link to="/account/register">Register</Link>
-                <AccountForm setToken={setToken} setMessage={setMessage}/>   
+                <Link className="links" to="/account/login">Login</Link> 
+                <Link className="links" to="/account/register">Register</Link>
+                <AccountForm setToken={setToken} />   
             </Route>
         </div>
     </BrowserRouter>
