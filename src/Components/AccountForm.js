@@ -5,7 +5,7 @@ import { callApi } from '../util';
 
 const { REACT_APP_BASE_URL } = process.env;
 
-const AccountForm = ({setToken}) => {
+const AccountForm = ({setToken, setMessage}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const params = useParams();
@@ -30,6 +30,7 @@ const AccountForm = ({setToken}) => {
                 console.log('loginResp', loginResp)
                 const userResp = await callApi({url: '/users/me', token: loginResp.data.token});
                 setToken(loginResp.data.token);
+                setMessage(loginResp.data.message)
                 if (loginResp.data.token) {
                     history.push('/'); 
                 }
