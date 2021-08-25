@@ -42,7 +42,7 @@ const App = () => {
                 <Link className="main-link" to="/">Home</Link>
                 <Link className="main-link" to="/posts">Posts</Link>
                 {
-                    token ? <Logout /> : <Link className="main-link" to="/account/:method">Login/Register</Link>
+                    token ? <Logout setToken={setToken}/> : <Link className="main-link" to="/account/:method">Login/Register</Link>
                 }
             </div>
 
