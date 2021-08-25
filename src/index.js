@@ -9,6 +9,7 @@ import Logout from './Components/Logout';
 import AddPost from './Components/AddPosts';
 
 import '../src/style.css'
+import { callApi } from './util';
 
 const { REACT_APP_BASE_URL } = process.env;
 
@@ -18,19 +19,23 @@ const App = () => {
     const [message, setMessage] =useState('');
     // const [postId, setPostId] = useState(null);
     
-
+    const fetchPosts = async () => {
+        const response = await callApi({
+            url: '/posts',
+            token
+        });
+        // const results = await response.json();
+        const allPosts = response.data.posts;
+        if(allPosts) setPosts(allPosts);
+    }
+    
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await fetch(`${REACT_APP_BASE_URL}/posts`);
-                const results = await response.json();
-                setPosts(results.data.posts);               
+        try {
+            fetchPosts();
             } catch (error) {
                 console.log(error);
             }
-        }
-        fetchPosts();
-    }, [])
+        }, [token])
 
   return (
     <BrowserRouter>
@@ -47,7 +52,7 @@ const App = () => {
             </Route>
             <Route exact path="/posts">
                 <AddPost token={token} setPosts={setPosts}/>
-                <Posts posts={posts} token={token}/>
+                <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>
                 
             </Route>
             <Route exact path="/account/:method">

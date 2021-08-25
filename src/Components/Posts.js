@@ -3,8 +3,8 @@ import { callApi } from '../util';
 import PostSingle from './PostSingle';
 
 const Posts = (props) => {
-    const { posts, token } = props;
-    console.log(posts)
+    const { posts, token, fetchPosts } = props;
+    console.log('posts', posts)
 
     const handleDelete = async (postId) => {
         const deleteResp = await callApi({
@@ -12,20 +12,20 @@ const Posts = (props) => {
             url: `/posts/${postId}`,
             token
         });
-        console.log('deleteResp', deleteResp)
+        await fetchPosts();
     }
 
-    return <div>
+    return <>
         <h1>Posts</h1>
         {
             posts.map(post => <PostSingle id="posts" key={post._id} post={post}>
                 {
-                    token && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
+                    post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
                 }
             </PostSingle>
             )
         }
-    </div>
+    </>
 }
 
 export default Posts;
