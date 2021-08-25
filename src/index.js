@@ -16,15 +16,13 @@ const { REACT_APP_BASE_URL } = process.env;
 const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
-    const [message, setMessage] =useState('');
-    // const [postId, setPostId] = useState(null);
+    const [user, setUser] =useState('');
     
     const fetchPosts = async () => {
         const response = await callApi({
             url: '/posts',
             token
         });
-        // const results = await response.json();
         const allPosts = response.data.posts;
         if(allPosts) setPosts(allPosts);
     }
@@ -47,19 +45,22 @@ const App = () => {
                     token ? <Logout /> : <Link className="main-link" to="/account/:method">Login/Register</Link>
                 }
             </div>
+
             <Route exact path="/">
-                <Home username={message} token={token}/>
+                <Home username={user} token={token}/>
             </Route>
+
             <Route exact path="/posts">
                 <AddPost token={token} setPosts={setPosts}/>
-                <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>
-                
+                <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>  
             </Route>
+
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
                 <Link className="links" to="/account/register">Register</Link>
-                <AccountForm setToken={setToken} setMessage={setMessage}/>   
+                <AccountForm setToken={setToken} setUser={setUser}/>   
             </Route>
+
         </div>
     </BrowserRouter>
   )

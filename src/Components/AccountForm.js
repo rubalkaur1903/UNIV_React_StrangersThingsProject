@@ -5,12 +5,11 @@ import { callApi } from '../util';
 
 const { REACT_APP_BASE_URL } = process.env;
 
-const AccountForm = ({setToken, setMessage}) => {
+const AccountForm = ({setToken, setUser}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const params = useParams();
     const history = useHistory();
-    // const [secondPassword, setSecondPassword] = useState('');
 
     return <>
         <form className="inputs" onSubmit={ async (event) => {
@@ -31,7 +30,7 @@ const AccountForm = ({setToken, setMessage}) => {
                 const userResp = await callApi({url: '/users/me', token: loginResp.data.token});
                 console.log('userResp', userResp)
                 setToken(loginResp.data.token);
-                setMessage(userResp.data.username)
+                setUser(userResp.data.username)
                 if (loginResp.data.token) {
                     history.push('/'); 
                 }
@@ -39,9 +38,6 @@ const AccountForm = ({setToken, setMessage}) => {
         }}>
             <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
             <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            {/* {
-                params.method === 'register' ? <input type="password" placeholder="Enter Password Again" value={secondPassword} onChange={(event) => setSecondPassword(event.target.value)}></input> : password.value === secondPassword.value ? 
-            } */}
             <button className="btn-input" type="submit">Submit</button>
         </form>
     </>
