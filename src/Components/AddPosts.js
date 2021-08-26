@@ -26,6 +26,10 @@ const AddPost = ({token, setPosts}) => {
     }
 
     return <>
+        <form className="search-form">
+            <input type="text" placeholder="search" className="search-input"></input>
+            <button type="submit" className="search-btn">Search</button>
+        </form>
         {
             token ? 
                 <>

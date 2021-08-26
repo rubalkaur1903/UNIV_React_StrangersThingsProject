@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -5,10 +6,29 @@ body {
     text-align: center;
     background-color: rgb(208, 226, 225);
 }
-#navbar {
+.navbar {
     background-color: rgb(54, 131, 124);
     padding: 20px;
     text-align: right;
+}
+.title {
+    font-size: 30px;
+    color: teal;
+}
+.search-form {
+    display: flex;
+    padding: 5px;
+    flex-grow: 3;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.search-input {
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+}
+.search-btn {
+    
 }
 .links {
     border-radius: 10px;
@@ -62,3 +82,14 @@ form {
     display: inline-block;
     
 }
+.the-image {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+/* @media screen and (max-width : 768px) {
+    .main-link {
+        display: flex;
+        flex-direction: column;
+    }
+} */

@@ -16,7 +16,7 @@ const { REACT_APP_BASE_URL } = process.env;
 const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
-    const [user, setUser] =useState('');
+    const [user, setUser] = useState('');
     
     const fetchPosts = async () => {
         const response = await callApi({
@@ -38,34 +38,29 @@ const App = () => {
   return (
     <BrowserRouter>
         <div id="container">
-            <div id="navbar">
+            <div className="navbar">
                 <Link className="main-link" to="/">Home</Link>
                 <Link className="main-link" to="/posts">Posts</Link>
                 {
                     token ? <Logout setToken={setToken}/> : <Link className="main-link" to="/account/:method">Login/Register</Link>
                 }
             </div>
-
             <Route exact path="/">
                 <Home username={user} token={token}/>
             </Route>
-
             <Route exact path="/posts">
                 <AddPost token={token} setPosts={setPosts}/>
                 <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>  
             </Route>
-
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
                 <Link className="links" to="/account/register">Register</Link>
                 <AccountForm setToken={setToken} setUser={setUser}/>   
             </Route>
-
         </div>
     </BrowserRouter>
   )
 }
-
 ReactDOM.render(
   <App />,
   document.getElementById('app'),
