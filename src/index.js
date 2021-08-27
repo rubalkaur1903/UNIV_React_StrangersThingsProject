@@ -7,6 +7,8 @@ import AccountForm from './Components/AccountForm';
 import Home from './Components/Home';
 import Logout from './Components/Logout';
 import AddPost from './Components/AddPosts';
+import PostView from './Components/PostView';
+import MyProfile from './Components/MyProfile';
 
 import '../src/style.css'
 import { callApi } from './util';
@@ -39,10 +41,13 @@ const App = () => {
     <BrowserRouter>
         <div id="container">
             <div className="navbar">
-                <Link className="main-link" to="/">Home</Link>
-                <Link className="main-link" to="/posts">Posts</Link>
+                <Link className="main-link" to="/">HOME</Link>
+                <Link className="main-link" to="/posts">POSTS</Link>
                 {
-                    token ? <Logout setToken={setToken}/> : <Link className="main-link" to="/account/:method">Login/Register</Link>
+                    token && <Link className="main-link" to="/profile">PROFILE</Link>
+                }
+                {
+                    token ? <Logout setToken={setToken}/> : <Link className="main-link" to="/account/:method">LOGIN/REGISTER</Link>
                 }
             </div>
             <Route exact path="/">
@@ -51,6 +56,12 @@ const App = () => {
             <Route exact path="/posts">
                 <AddPost token={token} setPosts={setPosts}/>
                 <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>  
+            </Route>
+            <Route exact path="/posts/:postId">
+                <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>
+            </Route>
+            <Route exact path="/profile">
+                <MyProfile />
             </Route>
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
