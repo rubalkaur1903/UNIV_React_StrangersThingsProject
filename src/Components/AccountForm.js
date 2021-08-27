@@ -34,6 +34,9 @@ const AccountForm = ({setToken, setUser}) => {
                 if (loginResp.data.token) {
                     history.push('/'); 
                 }
+                if (!password) {
+                    return 
+                }
             }
         }}>
             <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>

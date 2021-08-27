@@ -12,7 +12,7 @@ const MessageForm = ({post, token, fetchPosts}) => {
         console.log('content', content)
         const messageResp = await callApi({
             method: 'POST',
-            url: `/posts/${post._id}/messages`,
+            url: `/posts/${postId}/messages`,
             token,
             body: {
                 message: {
@@ -22,7 +22,7 @@ const MessageForm = ({post, token, fetchPosts}) => {
         });
         console.log('messageResp', messageResp)
         setContent(messageResp.data.message.content);
-        // await fetchPosts()
+        await fetchPosts()
         setContent('');
     }
     return <>
@@ -35,7 +35,7 @@ const MessageForm = ({post, token, fetchPosts}) => {
             : ''
         }
         <div>
-            <button type="submit" onClick={async () => await fetchPosts()}>Back to All Posts</button>
+            <button type="submit" onClick={() => fetchPosts()}>Back to All Posts</button>
         </div>
     </>
 }

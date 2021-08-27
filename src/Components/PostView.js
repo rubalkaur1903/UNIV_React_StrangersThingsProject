@@ -8,15 +8,15 @@ const PostView = ({posts, token, fetchPosts}) => {
     // console.log('posts', posts)
     const { postId } = useParams();
     console.log('postId', postId);
-    const post = posts.find(post => post._id === postId);
-    console.log('post: ', post)
+    const postResp = posts.find(post => post._id === postId);
+    console.log('post: ', postResp)
     return <>
         {/* <h1>Post id for post {postId}</h1> */}
-        <PostSingle post={post} >
+        <PostSingle post={postResp} >
             {
-                post && post.messages && post.messages.map(message => <div key={message._id}>Message: {message.content}</div>)
+                postResp && postResp.messages && postResp.messages.map(message => <div key={message._id}>{message.fromUser.username}: {message.content}</div>)
             }
-            <MessageForm post={post} token={token} fetchPosts={fetchPosts} />
+            <MessageForm post={postResp} token={token} fetchPosts={fetchPosts} />
         </PostSingle>
     </>
 }

@@ -13,7 +13,7 @@ export const callApi = async ({ url, method, token, body }) => {
         const response = await fetch(`${REACT_APP_BASE_URL}${url}`, options);
         const data = await response.json();
         if(data.error) {
-            throw (data.error);
+             (data.error);
         }
         return data;
     } catch (error) {
