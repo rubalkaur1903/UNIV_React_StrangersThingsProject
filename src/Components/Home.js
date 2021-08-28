@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = ({username, token}) => {
+    // const params = useParams();
     return (<div id="welcome">
         {
             token ? <h1 className="title">Strager's Things</h1> : <h1 className="title"> Welcome to Strager's Things</h1>
@@ -10,6 +11,9 @@ const Home = ({username, token}) => {
         {
             token ? <div className="welcome-message">Welcome! You are logged in as {username}!</div> : ''
         }
+        {/* {
+            token && method === "register" ? <div className="welcome-message">Welcome {username}! Thank you for signing up!</div> : ''
+        } */}
         {
             token ? <Link className="profile-link" to="/profile">View Profile</Link> : ''
         }

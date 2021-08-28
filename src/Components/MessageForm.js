@@ -7,6 +7,7 @@ const MessageForm = ({post, token, fetchPosts}) => {
     // console.log('post', post)
     const { postId } = useParams();
     const [content, setContent] = useState('');
+    console.log('content', content)
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         console.log('content', content)

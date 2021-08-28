@@ -2,28 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { callApi } from '../util';
 
 const Search =  ({posts}) => {
-    console.log('posts: ', posts)
+    // console.log('posts: ', posts)
     const [searchTerm, setSearchTerm] = useState('');
-    console.log('searchTerm ', searchTerm);
-
-    // const handleSearch = async (ev) => {
-    //     ev.preventDefault();
-    //     const searchResp = await callApi({
-    //         method: 'GET',
-    //         url: `/posts?title=${searchTerm}`
-    //     })
-    //     console.log('searchResp ', searchResp)
-    // }
+    // console.log('searchTerm ', searchTerm);
 
     const postMatches = (post, text) => {
-        // const searchResp = await callApi({
-        //             method: 'GET',
-        //             url: `/posts?title=${searchTerm}`
-        //         })
-        const check = posts.includes(searchTerm);
+        console.log(post)
+        console.log(text)
+        let check = post.includes(text);
         console.log('check', check)
     }
-    const filteredPosts = posts.filter(post => postMatches(post, searchTerm));
+    const filteredPosts = posts.filter(post => postMatches(post.title, searchTerm));
     console.log('filteredPosts', filteredPosts)
     const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 

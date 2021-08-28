@@ -53,7 +53,7 @@ const App = () => {
                 }
             </div>
             <Route exact path="/">
-                <Home username={user} token={token}/>
+                <Home username={user} token={token} posts={posts}/>
             </Route>
             <Route exact path="/posts">
                 <Search posts={posts} token={token} setPosts={setPosts} fetchPosts={fetchPosts}/>
@@ -65,9 +65,9 @@ const App = () => {
             <Route exact path="/posts/:postId">
                 <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>
             </Route>
-            <Route exact path="/profile">
-                <MyProfile posts={posts} setPosts={setPosts}/>
-            </Route>
+            {/* <Route exact path="/profile">
+                <MyProfile posts={posts} setPosts={setPosts} token={token}/>
+            </Route> */}
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
                 <Link className="links" to="/account/register">Register</Link>

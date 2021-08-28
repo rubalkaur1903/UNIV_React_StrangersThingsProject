@@ -20,8 +20,8 @@ const AccountForm = ({setToken, setUser}) => {
                 method: 'POST',
                 body: {
                     user: {
-                    username,
-                    password
+                        username,
+                        password
                     }
                 }
             });
@@ -35,7 +35,7 @@ const AccountForm = ({setToken, setUser}) => {
                     history.push('/'); 
                 }
                 if (!password) {
-                    return 
+                    throw ('wrong username or password')
                 }
             }
         }}>
