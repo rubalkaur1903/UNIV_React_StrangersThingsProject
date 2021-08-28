@@ -29,14 +29,22 @@ const MessageForm = ({post, token, fetchPosts}) => {
         { 
         token && !post.isAuthor ?
             <form onSubmit={handleSubmit}>
-            <input value={content} placeholder="content" onChange={(ev) => setContent(ev.target.value)}></input>
-            <button type="submit">Send Message</button>
+                <input value={content} placeholder="content" onChange={(ev) => setContent(ev.target.value)}></input>
+                <button type="submit">Send Message</button>
             </form>
             : ''
         }
-        <div>
+        {
+            post.isAuthor &&  post.messages ?
+            <form onSubmit={handleSubmit}>
+                <input value={content} placeholder="content" onChange={(ev) => setContent(ev.target.value)}></input>
+                <button type="submit">Send Message</button>
+            </form>
+            : ''
+        }
+        {/* <div>
             <button type="submit" onClick={() => fetchPosts()}>Back to All Posts</button>
-        </div>
+        </div> */}
     </>
 }
 

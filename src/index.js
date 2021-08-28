@@ -11,6 +11,7 @@ import PostView from './Components/PostView';
 import MyProfile from './Components/MyProfile';
 import Search from './Components/Search';
 
+
 import '../src/style.css'
 import { callApi } from './util';
 
@@ -56,8 +57,10 @@ const App = () => {
             </Route>
             <Route exact path="/posts">
                 <Search posts={posts} token={token} setPosts={setPosts} fetchPosts={fetchPosts}/>
-                <AddPost token={token} setPosts={setPosts}/>
                 <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>
+            </Route>
+            <Route exact path="/addpost">
+                <AddPost token={token} setPosts={setPosts}/>
             </Route>
             <Route exact path="/posts/:postId">
                 <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>

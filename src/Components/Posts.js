@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Posts = (props) => {
     const { posts, token, fetchPosts } = props;
-    console.log('posts', posts)
 
     const handleDelete = async (postId) => {
         const deleteResp = await callApi({
@@ -17,6 +16,9 @@ const Posts = (props) => {
     }
 
     return <>
+        {
+            token ? <Link to='/addpost'>Add Post</Link> : ''
+        }
         <h1>Posts</h1>
         {
             posts.map(post => <PostSingle id="posts" key={post._id} post={post} token={token}>

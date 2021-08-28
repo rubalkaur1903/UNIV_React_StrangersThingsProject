@@ -11,7 +11,6 @@ const PostView = ({posts, token, fetchPosts}) => {
     const postResp = posts.find(post => post._id === postId);
     console.log('post: ', postResp)
     return <>
-        {/* <h1>Post id for post {postId}</h1> */}
         <PostSingle post={postResp} >
             {
                 postResp && postResp.messages && postResp.messages.map(message => <div key={message._id}>{message.fromUser.username}: {message.content}</div>)

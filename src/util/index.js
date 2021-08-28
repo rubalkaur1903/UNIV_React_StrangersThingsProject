@@ -12,6 +12,7 @@ export const callApi = async ({ url, method, token, body }) => {
         if (token) options.headers['Authorization'] = `Bearer ${token}`;
         const response = await fetch(`${REACT_APP_BASE_URL}${url}`, options);
         const data = await response.json();
+        console.log('data: ', data)
         if(data.error) {
              (data.error);
         }

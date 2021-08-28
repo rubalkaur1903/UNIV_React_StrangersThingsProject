@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { callApi } from '../util';
 
-const Search = ({posts, setPosts}) => {
+const Search =  ({posts}) => {
+    console.log('posts: ', posts)
     const [searchTerm, setSearchTerm] = useState('');
-    console
-    return <>
-        <form className="search-form" onSubmit={ async (ev) => {
-            ev.preventDefault();
-            console.log('searchTerm', searchTerm)
-            try {
-                const searchResp = await callApi({
-                    method: 'GET',
-                    url: `/posts`,
-                });
-                console.log('searchResp', searchResp);
+    console.log('searchTerm ', searchTerm);
 
-                if(!searchTerm) {
-                    return posts;
-                } else{
-                    return posts.filter(post => {
-                        const searchResults = post.title.toLowerCase() === searchTerm;
-                        console.log(searchResults)
-                    })
-                }
-                setPosts(searchResults);
-            } catch (error) {
-                console.error(error)
-            }
+    // const handleSearch = async (ev) => {
+    //     ev.preventDefault();
+    //     const searchResp = await callApi({
+    //         method: 'GET',
+    //         url: `/posts?title=${searchTerm}`
+    //     })
+    //     console.log('searchResp ', searchResp)
+    // }
+
+    const postMatches = (post, text) => {
+        // const searchResp = await callApi({
+        //             method: 'GET',
+        //             url: `/posts?title=${searchTerm}`
+        //         })
+        const check = posts.includes(searchTerm);
+        console.log('check', check)
+    }
+    const filteredPosts = posts.filter(post => postMatches(post, searchTerm));
+    console.log('filteredPosts', filteredPosts)
+    const postsToDisplay = searchTerm.length ? filteredPosts : posts;
+
+    return <>
+        <form className="search-form" onSubmit={ (event) => {
+            event.preventDefault();
+            postsToDisplay.map(postToDisplay => <div key={ postToDisplay._id }>{postToDisplay}</div>)
         }}>
             <input type="text" placeholder="search" className="search-input" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
             <button type="submit" className="search-btn">Search</button>
