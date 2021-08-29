@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { callApi } from '../util';
+import PostSingle from './PostSingle';
 
-const AddPost = ({token, setPosts}) => {
+
+const AddPost = ({posts, token, setPosts, postId, setPostId}) => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -21,11 +23,11 @@ const AddPost = ({token, setPosts}) => {
                     title,
                     price, 
                     description,
-                    location
+                    location,
+                    willDeliver
                 }}, 
             token});
             const newPostResp = await callApi({url: '/posts', token});
-            console.log('newPostResp', newPostResp)
             setPosts(newPostResp.data.posts);
             setTitle('');
             setPrice('');
@@ -33,17 +35,37 @@ const AddPost = ({token, setPosts}) => {
             if(newPostResp.data.posts) {
                 history.push('/posts');
             }
-        }
+    }
+    // const handleUpdate = async (ev) => {
+    //     ev.preventDefault();
+    //     const editPost = callApi({
+    //         method: 'PATCH',
+    //         url: `/posts/${postId}`,
+    //         body: {
+    //             post: {
+    //                 title,
+    //                 price, 
+    //                 description,
+    //                 location,
+    //                 willDeliver
+    //             }},
+    //         token
+    //     });
+    //     console.log('editPost', editPost)
+    //     await fetchPosts();
+    // }
+    // handleUpdate();
+
 
     return <>
     {
-        token ?
+        token &&
         <div>
             <h1>Add New Post</h1>
             <form onSubmit={handleAdd}>
                 <fieldset>
                     <label>Title: </label>
-                    <input type="text" placeholder="title" value={title} onChange={(event) => {setTitle(event.target.value)}}></input>
+                    <input type="text" placeholder="*title*" value={title} onChange={(event) => {setTitle(event.target.value)}}></input>
                 </fieldset>
                 <fieldset>
                     <label>Price: </label>
@@ -69,9 +91,15 @@ const AddPost = ({token, setPosts}) => {
                     <button className="newpost-submit" type="submit">Submit</button>
                 </fieldset>
             </form>
-        </div>
-        : null
-    }  
+        </div>    
+    }
+    {/* {
+        posts.map(post => <PostSingle key={post._id} token={token} post={post}>
+            {
+                post.isAuthor && <button onClick={() => handleUpdate(post._id)}>Update Post</button>
+            }
+        </PostSingle>)
+    } */}
     </>
 }
 

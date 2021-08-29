@@ -4,13 +4,10 @@ import { callApi } from '../util';
 
 
 const MessageForm = ({post, token, fetchPosts}) => {
-    // console.log('post', post)
     const { postId } = useParams();
     const [content, setContent] = useState('');
-    console.log('content', content)
     const handleSubmit = async (ev) => {
         ev.preventDefault();
-        console.log('content', content)
         const messageResp = await callApi({
             method: 'POST',
             url: `/posts/${postId}/messages`,
@@ -36,16 +33,13 @@ const MessageForm = ({post, token, fetchPosts}) => {
             : ''
         }
         {
-            post.isAuthor &&  post.messages ?
+            post.isAuthor && post.messages.length ?
             <form onSubmit={handleSubmit}>
                 <input value={content} placeholder="content" onChange={(ev) => setContent(ev.target.value)}></input>
                 <button type="submit">Send Message</button>
             </form>
             : ''
         }
-        {/* <div>
-            <button type="submit" onClick={() => fetchPosts()}>Back to All Posts</button>
-        </div> */}
     </>
 }
 

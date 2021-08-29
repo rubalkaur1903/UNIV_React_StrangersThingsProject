@@ -12,7 +12,9 @@ const AccountForm = ({setToken, setUser}) => {
     const history = useHistory();
 
     return <>
-        <form className="inputs" onSubmit={ async (event) => {
+        <form 
+        className="inputs" 
+        onSubmit={ async (event) => {
             event.preventDefault();
 
             const loginResp = await callApi({
@@ -26,9 +28,7 @@ const AccountForm = ({setToken, setUser}) => {
                 }
             });
             if (loginResp.data) {
-                console.log('loginResp', loginResp)
                 const userResp = await callApi({url: '/users/me', token: loginResp.data.token});
-                console.log('userResp', userResp)
                 setToken(loginResp.data.token);
                 setUser(userResp.data.username)
                 if (loginResp.data.token) {
@@ -41,7 +41,11 @@ const AccountForm = ({setToken, setUser}) => {
         }}>
             <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
             <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            <button className="btn-input" type="submit">Submit</button>
+            <button 
+            className="btn-input" 
+            type="submit"
+            // disabled={username.value && password.value ? false : true}
+            >Submit</button>
         </form>
     </>
 }

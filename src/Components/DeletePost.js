@@ -3,7 +3,7 @@ import { callApi } from '../util';
 import PostSingle from './PostSingle';
 import { Link } from 'react-router-dom';
 
-const Posts = (props) => {
+const DeletePosts = (props) => {
     const { posts, token, fetchPosts } = props;
 
     const handleDelete = async (postId) => {
@@ -14,7 +14,23 @@ const Posts = (props) => {
         });
         await fetchPosts();
     }
-
+    // const handleUpdate = async (postId) => {
+    //     const editPost = callApi({
+    //         method: 'PATCH',
+    //         url: `/posts/${postId}`,
+    //         body: {
+    //             post: {
+    //                 title,
+    //                 price, 
+    //                 description,
+    //                 location,
+    //                 willDeliver
+    //             }},
+    //         token
+    //     });
+    //     await fetchPosts();
+    // }
+        
     return <>
         {
             token ? <Link to='/addpost'>Add Post</Link> : ''
@@ -26,10 +42,13 @@ const Posts = (props) => {
                 {
                     post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
                 }
+                {/* {
+                    post.isAuthor && <button onClick={() => handleUpdate(post._id)}>Update Post</button>
+                } */}
             </PostSingle>
             )
         }
     </>
 }
 
-export default Posts;
+export default DeletePosts;

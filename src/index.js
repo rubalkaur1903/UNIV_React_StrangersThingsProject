@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import Posts from './Components/Posts';
+import DeletePosts from './Components/DeletePost';
 import AccountForm from './Components/AccountForm';
 import Home from './Components/Home';
 import Logout from './Components/Logout';
@@ -10,6 +10,7 @@ import AddPost from './Components/AddPosts';
 import PostView from './Components/PostView';
 import MyProfile from './Components/MyProfile';
 import Search from './Components/Search';
+// import EditPost from './Components/EditPost';
 
 
 import '../src/style.css'
@@ -21,6 +22,7 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState('');
     const [user, setUser] = useState('');
+    const [postId, setPostId] = useState('');
     
     const fetchPosts = async () => {
         const response = await callApi({
@@ -57,17 +59,18 @@ const App = () => {
             </Route>
             <Route exact path="/posts">
                 <Search posts={posts} token={token} setPosts={setPosts} fetchPosts={fetchPosts}/>
-                <Posts posts={posts} token={token} fetchPosts={fetchPosts}/>
+                <DeletePosts posts={posts} token={token} fetchPosts={fetchPosts} postId={postId} setPostId={setPostId}/>
+                {/* <EditPost posts={posts} token={token} fetchPosts={fetchPosts}/> */}
             </Route>
             <Route exact path="/addpost">
-                <AddPost token={token} setPosts={setPosts}/>
+                <AddPost token={token} setPosts={setPosts} posts={posts}/>
             </Route>
             <Route exact path="/posts/:postId">
                 <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>
             </Route>
-            {/* <Route exact path="/profile">
+            <Route exact path="/profile">
                 <MyProfile posts={posts} setPosts={setPosts} token={token}/>
-            </Route> */}
+            </Route>
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 
                 <Link className="links" to="/account/register">Register</Link>
