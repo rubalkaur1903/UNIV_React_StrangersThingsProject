@@ -7,7 +7,7 @@ body {
     box-sizing: border-box;
 }
 .navbar {
-    background-color: rgb(126, 91, 70);
+    background-color: rgb(168, 88, 135);
     padding: 20px;
     text-align: right;
 }
@@ -19,6 +19,8 @@ body {
 }
 .single-post {
     margin: 2rem;
+    flex-basis: 200px;
+    flex-grow: 1;
 }
 .search-form {
     display: flex;
@@ -35,19 +37,17 @@ body {
 }
 
 .links {
-    border-radius: 10px;
-    background-color: rgb(211, 208, 195);
+    background-color: rgb(168, 88, 135);
     text-decoration: none;
-    color: black;
+    text-align: center;
+    color: white;
     padding: 5px 5rem;
     cursor: pointer;
     width: 100%;
-    border: 1px solid rgb(58, 58, 33);
     box-sizing: border-box;
 }
 .links:hover {
-    text-decoration: underline;
-    background-color: rgb(39, 99, 94);
+    background-color: rgb(114, 28, 78);
 }
 .main-link {
     padding: 10px;
@@ -63,37 +63,37 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 8px;
     display: inline-block;
     padding: 12px 20px;
     box-sizing: border-box;
     margin-top: 30px;
     margin-right: 30px;
-    width: 50%;
+    width: 60%;
 }
 .btn-input {
-    border-radius: 10px;
-    background-color: rgb(211, 208, 195);
-    color: black;
+    border-radius: 8px;
+    background-color: rgb(168, 88, 135);
+    color: white;
     padding: 14px 20px;
     margin-top: 20px;
     border: none;
     cursor: pointer;
-    width: 15%;
+    width: 30%;
 }
 .btn-input:hover {
-    background-color: rgb(39, 99, 94);
-    border: 3px solid;
-    text-decoration: underline;
+    background-color: rgb(114, 28, 78);
+    border: 3px solid black;
 }
 form {
     display: inline-block;
     
 }
 .the-image {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 .welcome-message {
     display: flex;
@@ -105,11 +105,17 @@ form {
     justify-content: center;
     text-align: center;
     text-decoration: none;
-    margin: 2rem;
     box-sizing: border-box;
     border: 1px solid rgb(58, 58, 33);
     border-radius: 5px;
-    
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.profile-link:hover{
+    background-color: rgb(168, 88, 135);
+    color: white;
 }
 .inputs, .btn-input {
     display: flex;
@@ -117,12 +123,3 @@ form {
     justify-content: center;
 
 }
-
-
-
-/* @media screen and (max-width : 768px) {
-    .main-link {
-        display: flex;
-        flex-direction: column;
-    }
-} */

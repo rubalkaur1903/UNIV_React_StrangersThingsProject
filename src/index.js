@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link, useParams } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import DeletePosts from './Components/DeletePost';
 import AccountForm from './Components/AccountForm';
@@ -10,7 +10,6 @@ import AddPost from './Components/AddPosts';
 import PostView from './Components/PostView';
 import MyProfile from './Components/MyProfile';
 import Search from './Components/Search';
-// import EditPost from './Components/EditPost';
 
 
 import '../src/style.css'
@@ -60,10 +59,10 @@ const App = () => {
             </Route>
             <Route exact path="/posts">
                 <Search posts={posts} setPosts={setPosts} fetchPosts={fetchPosts}/>
-                <DeletePosts posts={posts} token={token} fetchPosts={fetchPosts} postId={postId} setPostId={setPostId} />
+                <DeletePosts posts={posts} token={token} fetchPosts={fetchPosts} setPostId={setPostId} />
             </Route>
             <Route exact path="/addpost">
-                <AddPost token={token} setPosts={setPosts} posts={posts} />
+                <AddPost token={token} setPosts={setPosts} />
             </Route>
             <Route exact path="/posts/:postId">
                 <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>

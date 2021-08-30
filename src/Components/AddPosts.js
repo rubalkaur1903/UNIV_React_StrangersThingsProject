@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { callApi } from '../util';
-import PostSingle from './PostSingle';
-
 
 const AddPost = (props) => {
     const [title, setTitle] = useState('');
@@ -37,22 +35,6 @@ const AddPost = (props) => {
                 history.push('/posts');
             }
     }
-    const handleUpdate = async (ev) => {
-        const addPostResp = await callApi({
-            url: `/posts/${postId}`, 
-            method: 'PATCH', 
-            body: {
-                post: {
-                    title,
-                    price, 
-                    description,
-                    location,
-                    willDeliver
-                }}, 
-            token});
-            await fetchPosts();
-    }
-
     return <>
     {
         token &&

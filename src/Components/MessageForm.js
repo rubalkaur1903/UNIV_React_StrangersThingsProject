@@ -18,7 +18,6 @@ const MessageForm = ({post, token, fetchPosts}) => {
                 }
             }
         });
-        console.log('messageResp', messageResp)
         setContent(messageResp.data.message.content);
         await fetchPosts()
         setContent('');

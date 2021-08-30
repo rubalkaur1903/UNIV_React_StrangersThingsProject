@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { callApi } from '../util';
+import React, { useState } from 'react';
 
 const Search =  ({posts, setPosts, fetchPosts}) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [originalPost, setOriginalPost] = useState(posts);
 
     const postMatches = (post, text) => {
         let check = post.includes(text);
         return check;
     }
     const handleSubmit = () => {
-        const filteredPosts = posts.filter(post => postMatches(post.title.toLowerCase() && post.description.toLowerCase() && post.author.username.toLowerCase() ,searchTerm));
+        const filteredPosts = posts.filter(post => postMatches(post.title.toLowerCase(), searchTerm));
         setPosts(filteredPosts);
         if (!searchTerm.length) {
             fetchPosts();
@@ -18,11 +16,11 @@ const Search =  ({posts, setPosts, fetchPosts}) => {
     }
 
     return <>
-        <form className="search-form" onSubmit={ (event) => {
+        <form className="search-form" onSubmit={(event) => {
             event.preventDefault();
             handleSubmit();
         }}>
-            <input type="text" placeholder="search by username, title, or description" className="search-input" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
+            <input type="text" placeholder="search by title" className="search-input" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
             <button type="submit" className="search-btn">Search</button>
         </form>
     </>

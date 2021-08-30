@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { callApi } from '../util';
 
@@ -6,12 +6,11 @@ const MyProfile = ({ token, messages, user, setMesaages}) => {
     const history = useHistory();
 
     const handleSubmit = async () => {
-            const messageResp = await callApi({
-                url: '/users/me',
-                token
-            });
-            console.log('messageResp', messageResp)
-            setMesaages(messageResp.data.messages);    
+        const messageResp = await callApi({
+            url: '/users/me',
+            token
+        });
+        setMesaages(messageResp.data.messages);    
     }
     if(!token) {
         history.push('/')
@@ -23,7 +22,7 @@ const MyProfile = ({ token, messages, user, setMesaages}) => {
         ev.preventDefault();
         handleSubmit()
     }}>
-        <button type="submit">View My Messages</button>
+        <button type="submit">Click for Messages</button>
     </form>
     <h2>Sent Messages</h2>
     {
@@ -34,9 +33,9 @@ const MyProfile = ({ token, messages, user, setMesaages}) => {
                     user === message.fromUser.username ?
                     <>
                     <div>
-                        <div>For the Product "{message.post.title}" </div>
-                        <div>Product ID: {message.post._id}</div>
-                        <div>Message: {message.content}</div> 
+                        <div><b>Product Title: </b>"{message.post.title}" </div>
+                        <div><b>Product ID: </b>{message.post._id}</div>
+                        <div><b>Message Sent by Me: </b>{message.content}</div> 
                         <hr></hr>
                     </div>
                     </>
@@ -53,9 +52,9 @@ const MyProfile = ({ token, messages, user, setMesaages}) => {
                 {
                     user !== message.fromUser.username ?
                     <>
-                        <div>For the Product "{message.post.title}" </div>
-                        <div>Product ID: {message.post._id}</div>
-                        <div>Message: {message.content}</div> 
+                        <div><b>Product Title: </b>"{message.post.title}" </div>
+                        <div><b>Product ID: </b>{message.post._id}</div>
+                        <div><b>Message: </b>{message.content}</div> 
                         <hr></hr>
                     </>
                     : ''
