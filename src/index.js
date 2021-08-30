@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, useParams } from 'react-router-dom';
 
 import DeletePosts from './Components/DeletePost';
 import AccountForm from './Components/AccountForm';
@@ -23,6 +23,7 @@ const App = () => {
     const [token, setToken] = useState('');
     const [user, setUser] = useState('');
     const [postId, setPostId] = useState('');
+    const [messages, setMessages] = useState([]);
     
     const fetchPosts = async () => {
         const response = await callApi({
@@ -58,18 +59,17 @@ const App = () => {
                 <Home username={user} token={token} posts={posts}/>
             </Route>
             <Route exact path="/posts">
-                <Search posts={posts} token={token} setPosts={setPosts} fetchPosts={fetchPosts}/>
-                <DeletePosts posts={posts} token={token} fetchPosts={fetchPosts} postId={postId} setPostId={setPostId}/>
-                {/* <EditPost posts={posts} token={token} fetchPosts={fetchPosts}/> */}
+                <Search posts={posts} setPosts={setPosts} fetchPosts={fetchPosts}/>
+                <DeletePosts posts={posts} token={token} fetchPosts={fetchPosts} postId={postId} setPostId={setPostId} />
             </Route>
             <Route exact path="/addpost">
-                <AddPost token={token} setPosts={setPosts} posts={posts}/>
+                <AddPost token={token} setPosts={setPosts} posts={posts} />
             </Route>
             <Route exact path="/posts/:postId">
                 <PostView posts={posts} token={token} fetchPosts={fetchPosts}/>
             </Route>
             <Route exact path="/profile">
-                <MyProfile posts={posts} setPosts={setPosts} token={token}/>
+                <MyProfile token={token} messages={messages} setMesaages={setMessages} user={user}/>
             </Route>
             <Route exact path="/account/:method">
                 <Link className="links" to="/account/login">Login</Link> 

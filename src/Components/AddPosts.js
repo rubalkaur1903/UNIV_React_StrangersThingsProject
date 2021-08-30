@@ -4,13 +4,14 @@ import { callApi } from '../util';
 import PostSingle from './PostSingle';
 
 
-const AddPost = ({posts, token, setPosts, postId, setPostId}) => {
+const AddPost = (props) => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [location, setLocation] = useState('')
     const [willDeliver, setWillDeliver] = useState('')
 
+    const { token, setPosts } = props
     const history = useHistory();
 
     const handleAdd = async (ev) => {
@@ -36,26 +37,21 @@ const AddPost = ({posts, token, setPosts, postId, setPostId}) => {
                 history.push('/posts');
             }
     }
-    // const handleUpdate = async (ev) => {
-    //     ev.preventDefault();
-    //     const editPost = callApi({
-    //         method: 'PATCH',
-    //         url: `/posts/${postId}`,
-    //         body: {
-    //             post: {
-    //                 title,
-    //                 price, 
-    //                 description,
-    //                 location,
-    //                 willDeliver
-    //             }},
-    //         token
-    //     });
-    //     console.log('editPost', editPost)
-    //     await fetchPosts();
-    // }
-    // handleUpdate();
-
+    const handleUpdate = async (ev) => {
+        const addPostResp = await callApi({
+            url: `/posts/${postId}`, 
+            method: 'PATCH', 
+            body: {
+                post: {
+                    title,
+                    price, 
+                    description,
+                    location,
+                    willDeliver
+                }}, 
+            token});
+            await fetchPosts();
+    }
 
     return <>
     {
@@ -93,13 +89,6 @@ const AddPost = ({posts, token, setPosts, postId, setPostId}) => {
             </form>
         </div>    
     }
-    {/* {
-        posts.map(post => <PostSingle key={post._id} token={token} post={post}>
-            {
-                post.isAuthor && <button onClick={() => handleUpdate(post._id)}>Update Post</button>
-            }
-        </PostSingle>)
-    } */}
     </>
 }
 

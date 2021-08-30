@@ -41,11 +41,7 @@ const AccountForm = ({setToken, setUser}) => {
         }}>
             <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
             <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            <button 
-            className="btn-input" 
-            type="submit"
-            // disabled={username.value && password.value ? false : true}
-            >Submit</button>
+            <button className="btn-input" type="submit">Submit</button>
         </form>
     </>
 }
