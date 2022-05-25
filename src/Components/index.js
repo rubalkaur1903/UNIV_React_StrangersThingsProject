@@ -1,4 +1,5 @@
-export {default as Home} from './Home'
+export {default as App} from './App';
+export {default as Home} from './Home';
 export {default as MyProfile} from './MyProfile';
 export {default as DeletePost} from './DeletePost';
 export {default as AccountForm} from './AccountForm';

@@ -12,9 +12,7 @@ import {
     Search,
     PostView
 } from '../Components'
-
-
-import { callApi } from './util';
+import { callApi } from '../util';
 
 const { REACT_APP_BASE_URL } = process.env;
 
@@ -80,3 +78,5 @@ const App = () => {
     </BrowserRouter>
   )
 }
+
+export default App;

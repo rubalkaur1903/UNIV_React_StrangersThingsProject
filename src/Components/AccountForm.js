@@ -13,7 +13,8 @@ const AccountForm = ({setToken, setUser}) => {
 
     return <>
         <form 
-        className="inputs" 
+        method='post'
+        className="form-container" 
         onSubmit={ async (event) => {
             event.preventDefault();
 
@@ -39,9 +40,13 @@ const AccountForm = ({setToken, setUser}) => {
                 }
             }
         }}>
-            <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
-            <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            <button className="btn-input" type="submit">Submit</button>
+            <div className='form'>
+                <div className='form-input'>
+                    <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
+                    <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
+                </div>
+                <button className="btn-input" type="submit">Submit</button>
+            </div>
         </form>
     </>
 }
