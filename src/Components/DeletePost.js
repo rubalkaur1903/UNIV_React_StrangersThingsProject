@@ -3,7 +3,7 @@ import { callApi } from '../util';
 import PostSingle from './PostSingle';
 import { Link } from 'react-router-dom';
 
-const DeletePosts = (props) => {
+const DeletePost = (props) => {
     const { posts, setPostId, token, fetchPosts } = props;
 
     const handleDelete = async (postId) => {
@@ -17,7 +17,7 @@ const DeletePosts = (props) => {
         
     return <>
         {
-            token ? <Link to='/addpost'>Add Post</Link> : ''
+            token ? <Link className="add-post-link" to='/addpost'>Add Post</Link> : ''
         }
         <h1>Posts</h1>
         {
@@ -26,13 +26,10 @@ const DeletePosts = (props) => {
                 {
                     post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
                 }
-                {
-                    post.isAuthor && <button onClick={() => {setPostId(post._id)}}>Edit</button>
-                }
             </PostSingle>
             )
         }
     </>
 }
 
-export default DeletePosts;
+export default DeletePost;

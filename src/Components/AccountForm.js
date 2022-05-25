@@ -19,7 +19,7 @@ const AccountForm = ({setToken, setUser}) => {
 
             const loginResp = await callApi({
                 url: `/users/${params.method}`,
-                method: 'POST',
+                method: "POST",
                 body: {
                     user: {
                         username,
@@ -35,7 +35,7 @@ const AccountForm = ({setToken, setUser}) => {
                     history.push('/'); 
                 }
                 if (!password) {
-                    throw ('wrong username or password')
+                    throw ('wrong username or password');
                 }
             }
         }}>

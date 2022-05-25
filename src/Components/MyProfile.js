@@ -35,7 +35,7 @@ const MyProfile = ({ token, messages, user, setMesaages}) => {
                     <div>
                         <div><b>Product Title: </b>"{message.post.title}" </div>
                         <div><b>Product ID: </b>{message.post._id}</div>
-                        <div><b>Message Sent by Me: </b>{message.content}</div> 
+                        <div><b>Message: </b>{message.content}</div> 
                         <hr></hr>
                     </div>
                     </>

@@ -38,9 +38,11 @@ body {
 
 .links {
     background-color: rgb(168, 88, 135);
+    border-radius: 5px;
     text-decoration: none;
     text-align: center;
     color: white;
+    border: 1px solid black;
     padding: 5px 5rem;
     cursor: pointer;
     width: 100%;
@@ -122,4 +124,20 @@ form {
     flex-direction: column;
     justify-content: center;
 
+}
+.add-post-link {
+    background-color: rgb(189, 103, 153);
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    border-radius: 5px;
+    color: white;
+}
+.add-post-link:hover {
+    background-color: rgb(136, 52, 101);
 }

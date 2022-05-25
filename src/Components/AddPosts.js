@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { callApi } from '../util';
 
-const AddPost = (props) => {
+const AddPosts = (props) => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -74,4 +74,4 @@ const AddPost = (props) => {
     </>
 }
 
-export default AddPost;
+export default AddPosts;

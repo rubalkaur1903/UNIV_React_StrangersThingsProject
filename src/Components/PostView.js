@@ -5,9 +5,7 @@ import PostSingle from './PostSingle';
 import MessageForm from './MessageForm';
 
 const PostView = ({posts, token, fetchPosts}) => {
-    // console.log('posts', posts)
     const { postId } = useParams();
-    console.log('postId', postId);
     const postResp = posts.find(post => post._id === postId);
     console.log('post: ', postResp)
     return <>
