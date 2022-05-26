@@ -22,7 +22,7 @@ const DeletePost = (props) => {
         <div className='posts'>
             {
                 posts.map(post => <PostSingle id="all-posts" key={post._id} post={post} token={token}>
-                    <Link to={`/posts/${post._id}`}>Details</Link>
+                    <Link className='details-link' to={`/posts/${post._id}`}>Details</Link>
                     {
                         post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
                     }

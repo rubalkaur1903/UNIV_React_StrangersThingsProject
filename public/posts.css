@@ -13,11 +13,36 @@
     margin: 12px;
     border-radius: 1em;
 }
-@media print {
 
-}
 @media (max-width: 768px) {
     .posts {
         flex-direction: column;
     }
+}
+@media (min-width: 1200px) {
+    .posts {
+        flex-direction: row;
+    }
+}
+.details-link {
+    text-decoration: none;
+    background-color: rgb(22, 43, 77);
+    color: white;
+    text-align: center;
+    width: 20%;
+}
+.details-link:hover,
+.details-link:focus {
+    color: white;
+    background-color: rgba(6, 34, 88, 0.271);
+}
+.back-to-posts-link {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(22, 43, 77);
+    width: 10%;
+    text-align: center;
+}
+.back-to-posts-link:hover {
+    background-color: rgb(31, 70, 120);
 }
