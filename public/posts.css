@@ -1,0 +1,23 @@
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12px;
+}
+.single-post {
+    flex: 1 0 400px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    margin: 12px;
+    border-radius: 1em;
+}
+@media print {
+
+}
+@media (max-width: 768px) {
+    .posts {
+        flex-direction: column;
+    }
+}

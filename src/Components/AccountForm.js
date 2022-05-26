@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { callApi } from '../util';
 
@@ -40,12 +41,18 @@ const AccountForm = ({setToken, setUser}) => {
                 }
             }
         }}>
-            <div className='form'>
-                <div className='form-input'>
+            <div className='account-form'>
+                <div className="login-register-link" >
+                    <Link className="links" to="/account/login">Login</Link> 
+                    <Link className="links" to="/account/register">Register</Link>
+                </div>
+                <div className='input-form'>
                     <input className="inputs" type="text" placeholder="Enter Username" minLength={8} value={username} onChange={(event) => setUsername(event.target.value)}></input>
                     <input className="inputs" type="password" placeholder="Enter Password" minLength={8} value={password} onChange={(event) => setPassword(event.target.value)}></input>
                 </div>
-                <button className="btn-input" type="submit">Submit</button>
+                <div className='submit-button'>
+                    <button className="accountform-submit-button" type="submit">Submit</button>
+                </div>
             </div>
         </form>
     </>

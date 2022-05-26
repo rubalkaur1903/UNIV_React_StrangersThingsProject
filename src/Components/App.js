@@ -70,8 +70,6 @@ const App = () => {
                 <MyProfile token={token} messages={messages} setMesaages={setMessages} user={user}/>
             </Route>
             <Route exact path="/account/:method">
-                <Link className="links" to="/account/login">Login</Link> 
-                <Link className="links" to="/account/register">Register</Link>
                 <AccountForm setToken={setToken} setUser={setUser}/>   
             </Route>
         </div>

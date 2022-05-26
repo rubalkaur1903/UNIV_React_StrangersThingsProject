@@ -19,16 +19,17 @@ const DeletePost = (props) => {
         {
             token ? <Link className="add-post-link" to='/addpost'>Add Post</Link> : ''
         }
-        <h1>Posts</h1>
-        {
-            posts.map(post => <PostSingle id="posts" key={post._id} post={post} token={token}>
-                <Link to={`/posts/${post._id}`}>Details</Link>
-                {
-                    post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
-                }
-            </PostSingle>
-            )
-        }
+        <div className='posts'>
+            {
+                posts.map(post => <PostSingle id="all-posts" key={post._id} post={post} token={token}>
+                    <Link to={`/posts/${post._id}`}>Details</Link>
+                    {
+                        post.isAuthor && <button onClick={() => handleDelete(post._id)}>Delete Post</button>
+                    }
+                </PostSingle>
+                )
+            }
+        </div>
     </>
 }
 

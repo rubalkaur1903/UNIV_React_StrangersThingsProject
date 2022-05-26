@@ -21,7 +21,7 @@ const Search =  ({posts, setPosts, fetchPosts}) => {
             handleSubmit();
         }}>
             <input type="text" placeholder="search by title" className="search-input" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
-            <button type="submit" className="search-btn">Search</button>
+            <button type="submit" className="search-btn">Enter</button>
         </form>
     </>
 }
